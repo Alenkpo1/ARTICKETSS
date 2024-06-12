@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita que el carrusel genere scroll horizontal */
+    overflow-x: hidden; 
 }
 
 header {
@@ -40,30 +40,30 @@ nav ul li:hover {
 
 .slider-frame {
     width: 100%;
-    height: 100vh; /* Hace que el carrusel ocupe toda la altura de la pantalla */
-    position: fixed; /* Fija el carrusel en la ventana del navegador */
+    height: 100vh; 
+    position: fixed; 
     top: 0;
     left: 0;
-    z-index: 1; /* Asegura que el carrusel esté detrás de la barra de búsqueda */
-    animation: slide 20s infinite alternate ease-in-out; /* Ajusta la duración de la animación */
+    z-index: 1; 
+    animation: slide 20s infinite alternate ease-in-out; 
 }
 
 .slider-frame ul {
     display: flex;
     padding: 0;
-    width: 400%; /* Ajusta el ancho total de las imágenes */
+    width: 400%; 
 }
 
 .slider-frame li {
     list-style: none;
-    width: 100vw; /* Ajusta el ancho de cada imagen al ancho de la ventana */
-    height: 100vh; /* Hace que cada imagen ocupe toda la ventana */
+    width: 100vw; 
+    height: 100vh; 
 }
 
 .slider-frame img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+    object-fit: cover; 
 }
 
 .hero {
@@ -71,9 +71,9 @@ nav ul li:hover {
     justify-content: center;
     align-items: center;
     height: 50vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Añade un fondo semitransparente */
+    background-color: rgba(0, 0, 0, 0.5); 
     position: relative;
-    z-index: 2; /* Asegura que el contenido principal esté por encima del carrusel */
+    z-index: 2; /* muestra por encima */
 }
 
 .search-bar {
@@ -103,33 +103,33 @@ nav ul li:hover {
 }
 
 @keyframes slide {
-    0%, 20% { transform: translateX(0); } /* Cada imagen dura 3 segundos */
+    0%, 20% { transform: translateX(0); } 
     25%, 45% { transform: translateX(-100%); }
     50%, 70% { transform: translateX(-200%); }
     75%, 95% { transform: translateX(-300%); }
-    100% { transform: translateX(-300%); } /* Regresa al inicio */
+    100% { transform: translateX(-300%); } 
 }
 
 .nav-container {
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos */
+    align-items: center; 
 }
 
 .logo {
-    margin-right: auto; /* Empuja el logo hacia la izquierda */
+    margin-right: auto; 
 }
 
 .logo-img {
-    height: 18px; /* Ajusta el tamaño del logo según sea necesario */
+    height: 18px; 
     width: auto;
 }
 
 .carrito {
-    margin-left: auto; /* Empuja el logo hacia la izquierda */
+    margin-left: auto; 
 }
 
 .carrito-img {
-    height: 18px; /* Ajusta el tamaño del logo según sea necesario */
+    height: 18px; 
     width: auto;
 }
 
