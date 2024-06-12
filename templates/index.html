@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>ARtickets</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+                    <a href="{{ url_for('home') }}">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="{{ url_for('home') }}">Eventos</a></li>
+                <li><a href="#">¿Quiénes somos?</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="/contacto.html">Contacto</a></li>
+                <li><a href="">Iniciar sesión</a></li>
+                <li><a href="#">Regístrate</a></li>
+
+                <li class="carrito">
+                    <a href="#">
+                        <img src="../static/carrito.png" alt="carrito de compras" class="carrito-img">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="slider-frame">
+        <ul>
+            <li><img src="../img/img1.jpg" alt=""></li>
+            <li><img src="../img/img2.png" alt=""></li>
+            <li><img src="../img/img3.png" alt=""></li>
+            <li><img src="../img/img4.png" alt=""></li>
+        </ul>
+    </div>
+    <main>
+        <section class="hero">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar un evento...">
+                <button>Buscar</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="social-media">
+                <a href="#"><img src="../static/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
+            </div>
+            <div class="faq">
+                <a href="#">Preguntas Frecuentes</a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 ARTICKETS</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
