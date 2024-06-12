@@ -65,6 +65,14 @@ nav ul li:hover {
     height: 18px; 
     width: auto;
 }
+.carrito {
+    margin-right: auto; 
+}
+
+.carrito-img {
+    height: 18px; 
+    width: auto;
+}
 
 .slider-frame {
     width: 100%;
@@ -180,6 +188,7 @@ footer {
 
 .faq a:hover {
     text-decoration: underline;
+    color: #026661;
 }
 
 .copyright p {
@@ -230,3 +239,4 @@ footer {
 .concert button:hover {
     background-color: #026661;
 }
+
