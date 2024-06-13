@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #026661;
+    background: url("fondo.jpg") no-repeat;
 }
 
 header {

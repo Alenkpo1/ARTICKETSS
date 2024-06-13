@@ -6,25 +6,29 @@
 }
 
 body {
-    background-color: #07635b; /* Color de fondo */
+    background: url("fondo.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
     color: #fff; /* Color de texto */
     line-height: 1.6;
+    margin: 0; /* Añadido para asegurar que no haya margen exterior */
+    padding: 0; /* Añadido para asegurar que no haya relleno exterior */
 }
 
 header {
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 19px;
-    float:left;
 }
 
 nav ul {
@@ -32,12 +36,9 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    overflow: none;
-    overflow: hidden;
 }
 
 nav ul li {
-    float: left;
     font-family: Arial, sans-serif;
     font-size: 16px;
     margin: 0 12px;
@@ -47,8 +48,6 @@ nav ul li a {
     padding: 10px;
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
 }
 
 nav ul li:hover {
@@ -58,30 +57,32 @@ nav ul li:hover {
 
 .nav-container {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .logo {
-    margin-right: auto; 
+    margin-right: auto;
 }
 
 .logo-img {
-    height: 18px; 
+    height: 18px;
     width: auto;
 }
+
 .carrito {
-    margin-right: auto; 
+    margin-right: auto;
 }
 
 .carrito-img {
-    height: 18px; 
+    height: 18px;
     width: auto;
 }
+
 .wrapper {
     width: 840px;
     margin: 100px auto; /* Centrado verticalmente */
     padding: 30px;
-    background-color: rgba(4, 82, 92, 0.8); /* Fondo con transparencia */
+    background-color: rgba(4, 11, 12, 0.74); /* Fondo con transparencia */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Sombra */
 }
@@ -114,6 +115,7 @@ nav ul li:hover {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 21px 0; /* Añadido para espacio interno en el footer */
 }
 
 .social-media img {
@@ -135,4 +137,14 @@ nav ul li:hover {
 
 .copyright p {
     margin: 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
