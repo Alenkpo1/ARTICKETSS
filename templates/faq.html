@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Plataforma de Venta de Tickets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/faq.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="{{ url_for('home') }}">Eventos</a></li>
+                <li><a href="#">¿Quiénes somos?</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+                <li><a href="access.html">Iniciar sesión / Registrarse</a></li>
+                <li class="carrito">
+                    <img src="../static/carrito.png" alt="carrito" class="carrito-img">
+                </li>
+            </ul>
+    </header>
+    <div class="wrapper">
+        <h1>Preguntas Frecuentes</h1>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo puedo comprar tickets?</div>
+                <div class="faq-answer">Puedes comprar tickets en nuestra plataforma seleccionando el evento de tu interés y siguiendo el proceso de compra indicado.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Cuáles son los métodos de pago disponibles?</div>
+                <div class="faq-answer">Aceptamos tarjetas de crédito, débito y pagos a través de PayPal.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo cancelar mi compra?</div>
+                <div class="faq-answer">Las cancelaciones están sujetas a las políticas de cada evento. Por favor, revisa las condiciones de cancelación en la página del evento.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo recibiré mis tickets?</div>
+                <div class="faq-answer">Una vez completada la compra, recibirás tus tickets por correo electrónico. También puedes descargarlos desde tu cuenta en nuestra plataforma.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Qué hago si no recibo mis tickets?</div>
+                <div class="faq-answer">Si no recibes tus tickets en un plazo de 24 horas, por favor contacta a nuestro soporte técnico proporcionando los detalles de tu compra.</div>
+            </div>
+        </div>
+    </div>
+    <script defer src="../static/faq.js"></script> 
+</body>
+</html>
