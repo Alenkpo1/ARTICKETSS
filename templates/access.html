@@ -3,43 +3,72 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="../static/login.css"> 
+    <script defer src="../static/toggleForms.js"></script> 
 </head>
 
 <body class="login">
     <div class="wrapper">
-        <form action="">
+       
+        <form id="loginForm" class="active-form">
             <h1><img src="../static/logo.png" alt="Logo" class="logo-img"></h1>
             <div class="input-box">
-            <input type="text" placeholder="Usuario" required>
-            <i class="bx bxs-user">
-                <img src="../img/user.png" alt="user" class="user-img">
-            </i>
+                <input type="text" placeholder="Usuario" required>
+                <i class="bx bxs-user">
+                    <img src="../img/user.png" alt="user" class="user-img">
+                </i>
             </div>
             <div class="input-box">
                 <input type="password" placeholder="Contraseña" required>
-                <i class="bx bxs-user">
+                <i class="bx bxs-lock">
                     <img src="../img/lock.png" alt="lock" class="lock-img">
                 </i>
-                </div>
-
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> Recuerdame
-                    </label>
-                    <a href="#">¿Olvidaste tu contraseña?</a>
-                </div>
-
-                <button type="submit" class="btn">Entrar</button>
-
-                <div class="register-link">
-                    <p>¿No tenes una cuenta?<a 
-                        href="#"> Registrate</a></p>
-                </div>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Recuérdame</label>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+            <div class="register-link">
+                <p>¿No tienes una cuenta? <a href="#" onclick="toggleForms('registerForm')">Regístrate</a></p>
+            </div>
         </form>
 
+        
+        <form id="registerForm">
+            <h1><img src="../static/logo.png" alt="Logo" class="logo-img"></h1>
+            <div class="input-box">
+                <input type="text" placeholder="Usuario" required>
+                <i class="bx bxs-user">
+                    <img src="../img/user.png" alt="user" class="user-img">
+                </i>
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="Correo Electrónico" required>
+                <i class="bx bxs-envelope">
+                    <img src="../img/email.png" alt="email" class="email-img">
+                </i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Contraseña" required>
+                <i class="bx bxs-lock">
+                    <img src="../img/lock.png" alt="lock" class="lock-img">
+                </i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Confirmar Contraseña" required>
+                <i class="bx bxs-lock">
+                    <img src="../img/lock.png" alt="lock" class="lock-img">
+                </i>
+            </div>
+            <button type="submit" class="btn">Regístrate</button>
+            <div class="register-link">
+                <p>¿Ya tienes una cuenta? <a href="#" onclick="toggleForms('loginForm')">Iniciar Sesión</a></p>
+            </div>
+        </form>
     </div>
 </body>
 </html>

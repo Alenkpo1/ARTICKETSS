@@ -24,6 +24,7 @@ body {
     color: #fff;
     border-radius: 10px;
     padding: 30px 40px;
+    position: relative;
 }
 
 .wrapper h1 {
@@ -121,4 +122,12 @@ body {
 .logo-img {
     height: 55px; 
     width: auto;
+}
+
+form {
+    display: none;
+}
+
+form.active-form {
+    display: block;
 }
