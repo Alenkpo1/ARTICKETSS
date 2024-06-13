@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - Tu Empresa</title>
+    <link rel="stylesheet" href="/static/about.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+                    <a href="index.html">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="{{ url_for('home') }}">Eventos</a></li>
+                <li><a href="#">¿Quiénes somos?</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+                <li><a href="access.html">Iniciar sesión / Registrarse</a></li>
+                <li class="carrito">
+                    <img src="../static/carrito.png" alt="carrito" class="carrito-img">
+                </li>
+            </ul>
+    </header>
+    
+    <section class="about-us">
+        <div class="wrapper">
+            <h1>Quiénes Somos</h1>
+            <p>Somos una plataforma dedicada a la venta de tickets para eventos culturales, deportivos y musicales. Nuestro objetivo es facilitar el acceso a eventos destacados a través de una experiencia de usuario intuitiva y segura.</p>
+            <p>Trabajamos en estrecha colaboración con organizadores de eventos para garantizar una amplia variedad de opciones para nuestros usuarios. Nos comprometemos a proporcionar un servicio de alta calidad que satisfaga las necesidades de nuestros clientes y socios por igual.</p>
+            <p>Para más información, contáctanos en <a href="mailto:info@tuempresa.com">info@tuempresa.com</a>.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="social-media">
+                <a href="#"><img src="../static/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
+            </div>
+            <div class="faq">
+                <a href="./faq.html">Preguntas Frecuentes</a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 ARTICKETS</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

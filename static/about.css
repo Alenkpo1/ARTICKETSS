@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #07635b; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px;
+    float:left;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: none;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0 12px;
+}
+
+nav ul li a {
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+nav ul li:hover {
+    background: #026661;
+    border-radius: 50px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center; 
+}
+
+.logo {
+    margin-right: auto; 
+}
+
+.logo-img {
+    height: 18px; 
+    width: auto;
+}
+.carrito {
+    margin-right: auto; 
+}
+
+.carrito-img {
+    height: 18px; 
+    width: auto;
+}
+.wrapper {
+    width: 840px;
+    margin: 100px auto; /* Centrado verticalmente */
+    padding: 30px;
+    background-color: rgba(4, 82, 92, 0.8); /* Fondo con transparencia */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Sombra */
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wrapper p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.wrapper a {
+    color: #02b3a4;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.wrapper a:hover {
+    text-decoration: underline;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.faq a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.faq a:hover {
+    text-decoration: underline;
+    color: #026661;
+}
+
+.copyright p {
+    margin: 0;
+}
