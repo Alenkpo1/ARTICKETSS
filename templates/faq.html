@@ -13,15 +13,15 @@
             <ul>
                 <li class="logo">
 
-                    <a href="/home/{{nombre_usuario}}">
+                    <a href="{{url_for('home', nombre_usuario=nombre_usuario)}}">
                         <img src="../static/logo.png" alt="Logo" class="logo-img">
                     </a>
                 </li>
-                <li><a href="/eventos/{{nombre_usuario}}">Eventos</a></li>
-                <li><a href="/about/{{nombre_usuario}}">¿Quiénes somos?</a></li>
-                <li><a href="/faq/{{nombre_usuario}}">Ayuda</a></li>
-                <li><a href="/contact/{{nombre_usuario}}">Contacto</a></li>
-                <li><a href="/cuenta/{{nombre_usuario}}">Mi cuenta</a></li>
+                <li><a href="{{url_for('eventos', nombre_usuario=nombre_usuario)}}">Eventos</a></li>
+                <li><a href="{{url_for('about', nombre_usuario=nombre_usuario)}}">¿Quiénes somos?</a></li>
+                <li><a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Ayuda</a></li>
+                <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
+                <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
                 <li class="carrito">
                     <img src="../static/carrito.png" alt="carrito" class="carrito-img">
                 </li>

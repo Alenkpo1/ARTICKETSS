@@ -12,15 +12,15 @@
             <ul>
                 <li class="logo">
 
-                    <a href="/home/{{nombre_usuario}}">
+                    <a href="{{url_for('home', nombre_usuario=nombre_usuario)}}">
                         <img src="../static/logo.png" alt="Logo" class="logo-img">
                     </a>
                 </li>
-                <li><a href="/eventos/{{nombre_usuario}}">Eventos</a></li>
-                <li><a href="/about/{{nombre_usuario}}">¿Quiénes somos?</a></li>
-                <li><a href="/faq/{{nombre_usuario}}">Ayuda</a></li>
-                <li><a href="/contact/{{nombre_usuario}}">Contacto</a></li>
-                <li><a href="/cuenta/{{nombre_usuario}}">Mi cuenta</a></li>
+                <li><a href="{{url_for('eventos', nombre_usuario=nombre_usuario)}}">Eventos</a></li>
+                <li><a href="{{url_for('about', nombre_usuario=nombre_usuario)}}">¿Quiénes somos?</a></li>
+                <li><a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Ayuda</a></li>
+                <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
+                <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
                 <li class="carrito">
                     <img src="../static/carrito.png" alt="carrito" class="carrito-img">
                 </li>
@@ -45,27 +45,27 @@
         <section class="concerts">
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=1) }}" alt="Concert 1">
-                <button>Comprar tickets</button>
+                <a href="{{url_for('detalles', id_evento=1, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
             </div>
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=2) }}" alt="Concert 2">
-                <button>Comprar tickets</button>
+                <a href="{{url_for('detalles', id_evento=2, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
             </div>
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=3) }}" alt="Concert 3">
-                <button>Comprar tickets</button>
-            </div>
+                <a href="{{url_for('detalles', id_evento=3, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
+            </div>   
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=4) }}" alt="Concert 4">
-                <button>Comprar tickets</button>
+                <a href="{{url_for('detalles', id_evento=4, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
             </div>
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=5) }}" alt="Concert 5">
-                <button>Comprar tickets</button>
+                <a href="{{url_for('detalles', id_evento=5, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
             </div>
             <div class="concert">
                 <img src="{{ url_for('imagenes_eventos', image_id=6) }}" alt="Concert 6">
-                <button>Comprar tickets</button>
+                <a href="{{url_for('detalles', id_evento=6, nombre_usuario=nombre_usuario)}}"><button>Comprar tickets</button></a> 
             </div>
         </section>
     </main>
@@ -77,7 +77,7 @@
                 <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
             </div>
             <div class="faq">
-                <a href="/faq/{{nombre_usuario}}">Preguntas Frecuentes</a>
+                <a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Preguntas Frecuentes</a>
             </div>
             <div class="copyright">
                 <p>© 2024 ARTICKETS</p>

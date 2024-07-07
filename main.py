@@ -26,12 +26,12 @@ def login():
     if request.method == 'POST':
         mail = request.form['mail']
         contraseña = request.form['contraseña']
-        nombre = Usuarios.query.filter_by(mail=mail, contraseña=contraseña).first().nombre
-        if Usuarios.query.filter_by(mail=mail, contraseña=contraseña).all():
-            return redirect(url_for('home', nombre_usuario=nombre))
-        else:
+        if not Usuarios.query.filter_by(mail=mail, contraseña=contraseña).all():
             print('Credenciales incorrectas')
             return redirect(url_for('login'))
+        nombre = Usuarios.query.filter_by(mail=mail, contraseña=contraseña).first().nombre
+        if Usuarios.query.filter_by(mail=mail, contraseña=contraseña).all():
+            return redirect(url_for('home', nombre_usuario=nombre))  
 
 @app.route('/register', methods= ['POST', 'GET'])
 def register():
@@ -58,6 +58,10 @@ def register():
 @app.route('/about/<nombre_usuario>')
 def about(nombre_usuario):
     return render_template('about.html', nombre_usuario=nombre_usuario)
+
+@app.route('/cuenta/<nombre_usuario>')
+def cuenta(nombre_usuario):
+    return render_template('cuenta.html', nombre_usuario=nombre_usuario)
 
 @app.route('/contact/<nombre_usuario>')
 def contact(nombre_usuario):
@@ -89,7 +93,7 @@ def evento():
     except:
         return jsonify({"mensaje":"No existen eventos"})
     
-@app.route('/evento/<lugar>')
+@app.route('/evento_lugar/<lugar>')
 def evento_lugar(lugar):
     try:
         evento = Eventos.query.filter_by(lugar=lugar)
@@ -123,10 +127,9 @@ def detalles_evento(id_evento):
         return jsonify({"mensaje":"El evento no existe"})
 
 
-@app.route('/eventos/detalle/<id_evento>/<nombre_usuario>')
-def detalle(nombre_usuario, id_evento):
-    
-    return id_evento
+@app.route('/eventos/detalles/<id_evento>/<nombre_usuario>')
+def detalles(nombre_usuario, id_evento):
+    return render_template('detalles.html', nombre_usuario=nombre_usuario, id_evento=id_evento)
 
 @app.route('/seleccion/evento/<fecha_evento>/<nombre_usuario>')
 def seleccion_fecha(nombre_usuario):
