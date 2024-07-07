@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: url("fondo.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Color de texto */
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 12px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+nav ul li:hover {
+    background: #026661;
+    border-radius: 50px;
+}
+
+.logo-img {
+    height: 18px;
+}
+
+.carrito-img {
+    height: 18px;
+}
+
+.wrapper {
+    width: 840px;
+    margin: 100px auto; /* Centrado verticalmente */
+    padding: 30px;
+    background-color: rgba(4, 11, 12, 0.74); /* Fondo con transparencia */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Sombra */
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 5px;
+    background: transparent;
+    color: white;
+}
+
+.input-box input::placeholder {
+    color: white;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.faq a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.faq a:hover {
+    text-decoration: underline;
+    color: #026661;
+}
+
+.copyright p {
+    margin: 0;
+}

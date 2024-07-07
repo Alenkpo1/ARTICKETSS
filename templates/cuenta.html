@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - Plataforma de Entradas</title>
+    <link rel="stylesheet" href="../static/cuenta.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo" class="logo-img">
+                </div>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Mi Cuenta</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                <div class="carrito">
+                    <img src="carrito.png" alt="Carrito" class="carrito-img">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="account-section">
+        <div class="wrapper">
+            <h1>Mi Cuenta</h1>
+            <form id="account-form">
+                <div class="input-box">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                </div>
+                <div class="input-box">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido">
+                </div>
+                <div class="input-box">
+                    <label for="mail">Correo Electrónico</label>
+                    <input type="email" id="mail" name="mail" placeholder="Correo Electrónico">
+                </div>
+                <div class="input-box">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
+                </div>
+                <div class="input-box">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Dirección">
+                </div>
+                <div class="input-box">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+                </div>
+                <button type="button" class="btn" onclick="updateAccount()">Actualizar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="social-media">
+                <img src="facebook.png" alt="Facebook">
+                <img src="twitter.png" alt="Twitter">
+                <img src="instagram.png" alt="Instagram">
+            </div>
+            <div class="faq">
+                <a href="#">Preguntas Frecuentes</a>
+                <a href="#">Política de Privacidad</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/cuenta.js"></script>
+</body>
+</html>
