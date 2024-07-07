@@ -1,16 +1,9 @@
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-
-body {
+    overflow-x: hidden;
     background: url("fondo.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: #fff; /* Color de texto */
-    line-height: 1.6;
 }
 
 header {
@@ -27,18 +20,27 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 19px;
+    float:left;
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: none;
+    overflow: hidden;
 }
 
 nav ul li {
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
     margin: 0 12px;
 }
 
 nav ul li a {
+    padding: 10px;
     color: #fff;
     text-decoration: none;
     font-size: 16px;
@@ -46,16 +48,30 @@ nav ul li a {
 }
 
 nav ul li:hover {
-    background: #026661;
+    background: rgba(1, 7, 36, 0.8); 
     border-radius: 50px;
 }
 
+.nav-container {
+    display: flex;
+    align-items: center; 
+}
+
+.logo {
+    margin-right: auto; 
+}
+
 .logo-img {
-    height: 18px;
+    height: 18px; 
+    width: auto;
+}
+.carrito {
+    margin-right: auto; 
 }
 
 .carrito-img {
-    height: 18px;
+    height: 18px; 
+    width: auto;
 }
 
 .wrapper {
@@ -71,6 +87,7 @@ nav ul li:hover {
     font-size: 36px;
     text-align: center;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .input-box {
@@ -81,10 +98,11 @@ nav ul li:hover {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 .input-box input {
-    width: 100%;
+    width: 97%;
     padding: 10px;
     font-size: 16px;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -112,7 +130,7 @@ nav ul li:hover {
 }
 
 footer {
-    background-color: #333;
+    background-color: #07032e;
     color: white;
     padding: 20px 0;
     position: relative;
@@ -142,7 +160,7 @@ footer {
 
 .faq a:hover {
     text-decoration: underline;
-    color: #026661;
+    color: rgba(1, 7, 36, 0.8); 
 }
 
 .copyright p {
