@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>ARtickets</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+
+                    <a href="/home/{{nombre_usuario}}">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="/eventos/{{nombre_usuario}}">Eventos</a></li>
+                <li><a href="/about/{{nombre_usuario}}">¿Quiénes somos?</a></li>
+                <li><a href="/faq/{{nombre_usuario}}">Ayuda</a></li>
+                <li><a href="/contact/{{nombre_usuario}}">Contacto</a></li>
+                <li><a href="/cuenta/{{nombre_usuario}}">Mi cuenta</a></li>
+                <li class="carrito">
+                    <img src="../static/carrito.png" alt="carrito" class="carrito-img">
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="slider-frame">
+        <ul>
+            <li><img src="../static/img1.jpg" alt=""></li>
+            <li><img src="../static/img2.png" alt=""></li>
+            <li><img src="../static/img3.png" alt=""></li>
+            <li><img src="../static/img4.png" alt=""></li>
+        </ul>
+    </div>
+    <section class="hero">
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar un evento...">
+            <button>Buscar</button>
+        </div>
+    </section>
+    <main>
+        <section class="concerts">
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=1) }}" alt="Concert 1">
+                <button>Comprar tickets</button>
+            </div>
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=2) }}" alt="Concert 2">
+                <button>Comprar tickets</button>
+            </div>
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=3) }}" alt="Concert 3">
+                <button>Comprar tickets</button>
+            </div>
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=4) }}" alt="Concert 4">
+                <button>Comprar tickets</button>
+            </div>
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=5) }}" alt="Concert 5">
+                <button>Comprar tickets</button>
+            </div>
+            <div class="concert">
+                <img src="{{ url_for('imagenes_eventos', image_id=6) }}" alt="Concert 6">
+                <button>Comprar tickets</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="social-media">
+                <a href="#"><img src="../static/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
+            </div>
+            <div class="faq">
+                <a href="/faq/{{nombre_usuario}}">Preguntas Frecuentes</a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 ARTICKETS</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

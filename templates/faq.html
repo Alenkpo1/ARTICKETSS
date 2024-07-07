@@ -12,19 +12,21 @@
         <nav class="nav-container">
             <ul>
                 <li class="logo">
-                    <a href="index.html">
+
+                    <a href="/home/{{nombre_usuario}}">
                         <img src="../static/logo.png" alt="Logo" class="logo-img">
                     </a>
                 </li>
-                <li><a href="{{ url_for('home') }}">Eventos</a></li>
-                <li><a href="#">¿Quiénes somos?</a></li>
-                <li><a href="#">Ayuda</a></li>
-                <li><a href="contact.html">Contacto</a></li>
-                <li><a href="access.html">Iniciar sesión / Registrarse</a></li>
+                <li><a href="/eventos/{{nombre_usuario}}">Eventos</a></li>
+                <li><a href="/about/{{nombre_usuario}}">¿Quiénes somos?</a></li>
+                <li><a href="/faq/{{nombre_usuario}}">Ayuda</a></li>
+                <li><a href="/contact/{{nombre_usuario}}">Contacto</a></li>
+                <li><a href="/cuenta/{{nombre_usuario}}">Mi cuenta</a></li>
                 <li class="carrito">
                     <img src="../static/carrito.png" alt="carrito" class="carrito-img">
                 </li>
             </ul>
+        </nav>
     </header>
     <div class="wrapper">
         <h1>Preguntas Frecuentes</h1>
