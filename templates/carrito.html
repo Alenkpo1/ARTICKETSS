@@ -71,14 +71,12 @@
                     const element = document.createElement("li");
                     const button = document.createElement("button");
 
-                    // Agregar clases CSS a los elementos creados
                     element.classList.add("carrito-item");
                     button.classList.add("eliminar-button");
 
                     element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ". Precio: $" + data[i].precio + ". Cantidad: " + data[i].cantidad;
                     button.innerText = "Eliminar del carrito";
                     
-                    // Agregar evento click que elimina el ítem y recarga la página
                     button.addEventListener("click", function () {
                         fetch(`/carrito/limpiar/{{nombre_usuario}}/${data[i].id}`, { method: 'DELETE' })
                         .then(response => {

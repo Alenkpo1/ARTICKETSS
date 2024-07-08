@@ -9,10 +9,10 @@ body {
     background: url("fondo.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    color: #fff; /* Color de texto */
+    color: #fff;
     line-height: 1.6;
-    margin: 0; /* Añadido para asegurar que no haya margen exterior */
-    padding: 0; /* Añadido para asegurar que no haya relleno exterior */
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -80,11 +80,11 @@ nav ul li:hover {
 
 .wrapper {
     width: 840px;
-    margin: 100px auto; /* Centrado verticalmente */
+    margin: 100px auto;
     padding: 30px;
-    background-color: rgba(4, 11, 12, 0.74); /* Fondo con transparencia */
+    background-color: rgba(4, 11, 12, 0.74);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Sombra */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .wrapper h1 {
@@ -115,7 +115,7 @@ nav ul li:hover {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 21px 0; /* Añadido para espacio interno en el footer */
+    padding: 21px 0;
 }
 
 .social-media img {

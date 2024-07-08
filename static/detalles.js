@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             const dataDisplay = document.getElementById("dataDisplay");
 
-            // Create HTML elements to display the JSON data
             const nameElement = document.createElement("p");
             nameElement.textContent = "Name: " + data.nombre_evento;
 
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const cityElement = document.createElement("p");
             cityElement.textContent = "City: " + data.lugar;
 
-            // Append the elements to the "dataDisplay" div
             dataDisplay.appendChild(nameElement);
             dataDisplay.appendChild(ageElement);
             dataDisplay.appendChild(cityElement);

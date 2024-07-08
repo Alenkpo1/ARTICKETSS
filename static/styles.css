@@ -223,12 +223,12 @@ footer {
     height: 409px;
     border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la imagen */
-    transition: transform 0.3s ease; /* Transición suave para el hover */
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
 }
+
 .concert img:hover {
-    transform: scale(1.05); /* Efecto de zoom en hover */
+    transform: scale(1.05);
 }
 
 .concert button {
@@ -244,4 +244,3 @@ footer {
 .concert button:hover {
     background-color: rgba(1, 7, 36, 0.8); 
 }
-

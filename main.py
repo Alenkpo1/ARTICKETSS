@@ -236,6 +236,7 @@ def detalles(nombre_usuario, id_evento):
 @app.route('/seleccion/evento/<fecha_evento>/<nombre_usuario>')
 def seleccion_fecha(nombre_usuario):
     return render_template('login.html', nombre_usuario=nombre_usuario)
+
 @app.route('/seleccion/evento/<asiento_evento>/<nombre_usuario>')
 def seleccion_asiento(nombre_usuario):
     return render_template('login.html', nombre_usuario=nombre_usuario)

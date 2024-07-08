@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     recoverPasswordButton.addEventListener("click", (e) => {
         e.preventDefault();
-        // Aquí puedes añadir la lógica para enviar el correo de recuperación.
-        // Después de enviar el correo, muestra el mensaje de confirmación.
         confirmationMessage.textContent = "Revisa tu correo para recuperar tu contraseña.";
         confirmationMessage.style.display = "block";
     });
