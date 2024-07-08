@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: url("fondo.jpg") no-repeat;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 80px; /* Ajustado para más espacio */
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0 12px;
+}
+
+nav ul li a {
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li:hover {
+    background: rgba(1, 7, 36, 0.8); 
+    border-radius: 50px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.logo-img {
+    height: 18px;
+    width: auto;
+}
+
+.carrito {
+    margin-right: auto;
+}
+
+.carrito-img {
+    height: 18px;
+    width: auto;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 80px - 100px);
+}
+
+.concerts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.concert {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.concert img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.concert button {
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.concert button:hover {
+    background-color: #155ab6;
+}
+
+footer {
+    background-color: #07032e;
+    color: white;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.faq a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.faq a:hover {
+    text-decoration: underline;
+    color: rgba(1, 7, 36, 0.8); 
+}
+
+.copyright p {
+    margin: 0;
+}

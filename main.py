@@ -41,8 +41,11 @@ def eventos_search(search, nombre_usuario):
     if request.method == 'GET':
         return render_template('eventos_search.html', search=search, nombre_usuario=nombre_usuario)
     if request.method == 'POST':
-        return redirect(url_for('eventos', search=search, nombre_usuario=nombre_usuario))
-    
+        search=request.form['search']
+        if search == Eventos.query.filter_by(nombre_evento=search).first().nombre_evento:
+            return redirect(url_for('eventos_filtrados', search=search, nombre_usuario=nombre_usuario))
+        else:
+            return "holasasd"
 
 @app.route('/contact/<nombre_usuario>', methods = ['POST', 'GET'])
 def contact(nombre_usuario):
