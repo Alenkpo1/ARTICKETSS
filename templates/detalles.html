@@ -92,15 +92,21 @@
                     const entradas = document.getElementById("entradas");
 
                     for (let i = 0; i < data.length; i++) {
-                        const element = document.createElement("li");
-                        const button = document.createElement("button");
-                        button.className = "add-to-cart-button";
-                        button.innerText = "Añadir al carrito";
-                        button.setAttribute("onclick", "location.href='/carrito/agregar/{{nombre_usuario}}/" + data[i].precio + "/" + data[i].id + "'");
+                        if (data[i].cantidad_disponible == 0) {
+                            alert("No hay entradas disponibles");
+                        }
+                        else {
+                            const element = document.createElement("li");
+                            const button = document.createElement("button");
+                            button.className = "add-to-cart-button";
+                            button.innerText = "Añadir al carrito";
+                            button.setAttribute("onclick", "location.href='/carrito/agregar/{{nombre_usuario}}/" + data[i].precio + "/" + data[i].id + "'");
 
-                        element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ".\n\nPrecio: $" + data[i].precio + ".\n\nCantidad disponible: " + data[i].cantidad_disponible;
-                        element.appendChild(button);
-                        entradas.appendChild(element);
+                            element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ".\n\nPrecio: $" + data[i].precio + ".\n\nCantidad disponible: " + data[i].cantidad_disponible;
+                            element.appendChild(button);
+                            entradas.appendChild(element);
+                        }
+                        
                     }
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
