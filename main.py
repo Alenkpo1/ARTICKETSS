@@ -1,31 +1,53 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify, flash, send_file
 from time import sleep
 from models import db, Usuarios, Eventos, Entradas, Carrito, Contacto
-
-app = Flask(__name__)
+app= Flask(__name__)
 port = 5000
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://articket:articket@localhost:5432/artickets'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://articket:articket@localhost:5432/artickets'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-#Retorna la imagen de un evento específico.
 @app.route('/imagenes_eventos/<image_id>')
 def imagenes_eventos(image_id):
     img = Eventos.query.get(image_id)
     return send_file(img.imagen, mimetype='image/png')
 
-@app.route('/home/<nombre_usuario>')
+@app.route('/home/<nombre_usuario>', methods = ['POST', 'GET'])
 def home(nombre_usuario):
-    return render_template('home.html', nombre_usuario=nombre_usuario)
+    if request.method == 'GET':
+        return render_template('home.html', nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        search = request.form['search']
+        return redirect(url_for('eventos_search', search=search, nombre_usuario=nombre_usuario))
 
-@app.route('/contact/<nombre_usuario>', methods=['POST', 'GET'])
+@app.route('/eventos_filtrados/<search>')
+def eventos_filtrados(search):
+    try:
+        evento= Eventos.query.filter_by(nombre_evento=search).first()
+        evento_data = {
+            'id':evento.id,
+            'nombre_evento': evento.nombre_evento
+
+        }
+        return jsonify(evento_data)
+    except:
+        return jsonify({"mensaje":"El evento no existe"})
+    
+@app.route('/eventos/<search>/<nombre_usuario>', methods = ['POST', 'GET'])
+def eventos_search(search, nombre_usuario):
+    if request.method == 'GET':
+        return render_template('eventos_search.html', search=search, nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        return redirect(url_for('eventos', search=search, nombre_usuario=nombre_usuario))
+    
+
+@app.route('/contact/<nombre_usuario>', methods = ['POST', 'GET'])
 def contact(nombre_usuario):
     if request.method == 'GET':
-        return render_template('contact.html', nombre_usuario=nombre_usuario)  #Renderiza el formulario de contacto.
+        return render_template('contact.html', nombre_usuario=nombre_usuario)
     if request.method == 'POST':
         nombre = request.form['name']
         email = request.form['email']
@@ -35,14 +57,14 @@ def contact(nombre_usuario):
             email=email,
             mensaje=mensaje
         )
-        db.session.add(nuevo_contacto)  #Guarda el nuevo contacto en la base de datos.
+        db.session.add(nuevo_contacto)
         db.session.commit()
         return "Contacto enviado"
-
-@app.route('/login', methods=['POST', 'GET'])
+    
+@app.route('/login', methods= ['POST', 'GET'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')  #Renderiza el formulario de login.
+        return render_template('login.html')
     if request.method == 'POST':
         mail = request.form['mail']
         contraseña = request.form['contraseña']
@@ -51,12 +73,12 @@ def login():
             return redirect(url_for('login'))
         nombre = Usuarios.query.filter_by(mail=mail, contraseña=contraseña).first().nombre
         if Usuarios.query.filter_by(mail=mail, contraseña=contraseña).all():
-            return redirect(url_for('home', nombre_usuario=nombre))  #Redirige al usuario a la página de inicio.
+            return redirect(url_for('home', nombre_usuario=nombre))  
 
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/register', methods= ['POST', 'GET'])
 def register():
     if request.method == 'GET':
-        return render_template('register.html')  #Renderiza el formulario de registro.
+        return render_template('register.html')
     if request.method == 'POST':
         nombre = request.form['nombre']
         apellido = request.form['apellido']
@@ -66,28 +88,29 @@ def register():
         telefono = request.form['telefono']
 
         if Usuarios.query.filter_by(mail=mail).all():
-            print('Ya existe un usuario con ese correo')
-            return redirect(url_for('register'))  #Redirige de vuelta al formulario de registro.
-        else:
-            #Crea un nuevo usuario y lo añade a la base de datos.
+            print('Ya existe un usuario con ese correo')   
+            return redirect(url_for('register'))
+        else: 
             usuario = Usuarios(nombre=nombre, apellido=apellido, mail=mail, contraseña=contraseña, direccion=direccion, telefono=telefono)
             db.session.add(usuario)
             db.session.commit()
             return redirect(url_for('login'))
-
+        
+    
 @app.route('/about/<nombre_usuario>')
 def about(nombre_usuario):
     return render_template('about.html', nombre_usuario=nombre_usuario)
 
+
 @app.route('/cuenta/<nombre_usuario>', methods=['POST', 'GET'])
 def cuenta(nombre_usuario):
     if request.method == 'GET':
-        return render_template('cuenta.html', nombre_usuario=nombre_usuario)  #Renderiza la página de cuenta.
+        return render_template('cuenta.html', nombre_usuario=nombre_usuario)
     if request.method == 'POST':
-        nombre = request.form['nombre']
+        nombre= request.form['nombre']
         apellido = request.form['apellido']
         mail = request.form['mail']
-        contraseña = request.form['contraseña']
+        contraseña = request.form['contraseña']
         direccion = request.form['direccion']
         telefono = request.form['telefono']
 
@@ -95,10 +118,10 @@ def cuenta(nombre_usuario):
         cuenta.nombre = nombre
         cuenta.apellido = apellido
         cuenta.mail = mail
-        cuenta.contraseña = contraseña
+        cuenta.contraseña = contraseña
         cuenta.direccion = direccion
         cuenta.telefono = telefono
-        db.session.commit()  #Guarda los cambios en los detalles de la cuenta.
+        db.session.commit()
         return redirect(url_for('cuenta', nombre_usuario=nombre))
 
 @app.route('/cuenta/detalle/<nombre_usuario>')
@@ -109,13 +132,15 @@ def cuenta_detalle(nombre_usuario):
             'nombre': cuenta.nombre,
             'apellido': cuenta.apellido,
             'mail': cuenta.mail,
-            'contraseña': cuenta.contraseña,
+            'contraseña': cuenta.contraseña,
             'direccion': cuenta.direccion,
             'telefono': cuenta.telefono
         }
-        return jsonify(cuenta_data)  #Retorna los detalles de la cuenta del usuario en formato JSON.
+        return jsonify(cuenta_data)
     except:
-        return jsonify({"mensaje": "La cuenta no existe"})
+        return jsonify({"mensaje":"La cuenta no existe"})
+    
+
 
 @app.route('/faq/<nombre_usuario>')
 def faq(nombre_usuario):
@@ -139,14 +164,14 @@ def evento():
                 'lugar': evento.lugar
             }
             eventos_data.append(evento_data)
-        return jsonify(eventos_data)  #Retorna detalles de todos los eventos en formato JSON.
+        return jsonify(eventos_data)
     except:
-        return jsonify({"mensaje": "No existen eventos"})  #Mensaje de error si no hay eventos registrados.
-
-@app.route('/evento_lugar/<lugar>')
+        return jsonify({"mensaje":"No existen eventos"})
+    
+@app.route('/evento_search/<search>')
 def evento_lugar(lugar):
     try:
-        eventos = Eventos.query.filter_by(lugar=lugar)
+        evento = Eventos.query.filter_by(lugar=lugar)
         eventos_data = []
         for evento in eventos:
             evento_data = {
@@ -158,10 +183,10 @@ def evento_lugar(lugar):
                 'lugar': evento.lugar
             }
             eventos_data.append(evento_data)
-        return jsonify(eventos_data)  #Retorna detalles de eventos en un lugar específico en formato JSON.
+        return jsonify(eventos_data)
     except:
-        return jsonify({"mensaje": "No existen eventos en esta ubicación"})  #Mensaje de error si no hay eventos en esa ubicación.
-
+        return jsonify({"mensaje":"No existen eventos en esta ubicacion"})
+    
 @app.route('/evento/<id_evento>')
 def detalles_evento(id_evento):
     try:
@@ -174,38 +199,41 @@ def detalles_evento(id_evento):
             'hora': evento.hora,
             'lugar': evento.lugar
         }
-        return jsonify(evento_data)  #Retorna detalles de un evento específico en formato JSON.
+        return jsonify(evento_data)
     except:
-        return jsonify({"mensaje": "El evento no existe"})  #Mensaje de error si el evento no existe.
+        return jsonify({"mensaje":"El evento no existe"})
+
 
 @app.route('/carrito/agregar/<nombre_usuario>/<precio_entrada>/<id_entrada>')
 def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
-    nombre = nombre_usuario
-    precio = precio_entrada
-    id_entrada = id_entrada
+    nombre=nombre_usuario
+    precio=precio_entrada
+    id_entrada=id_entrada
     id_usuario = Usuarios.query.filter_by(nombre=nombre).first().id
     restante = Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible
-    if restante > 0:
+    if restante>0:
         Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible - 1
-        carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1, precio=precio)
-        db.session.add(carrito)  #Añade la entrada al carrito en la base de datos.
-        db.session.commit()  #Guarda los cambios en la base de datos.
-        return "Subido al carrito"
+        carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  precio=precio)
+        db.session.add(carrito)
+        db.session.commit()
+        return "subido al carrito"
     else:
-        return "No hay más entradas disponibles"
+        return "no hay mas entradas"
+    
 
 @app.route('/carrito/detalles/<nombre_usuario>')
 def carrito_detalles(nombre_usuario):
-    return render_template('carrito.html', nombre_usuario=nombre_usuario)  #Renderiza la página de detalles del carrito.
+    return render_template('carrito.html', nombre_usuario=nombre_usuario)
 
 @app.route('/carrito/limpiar/<nombre_usuario>/<id_venta>', methods=['DELETE'])
 def carrito_limpiar(nombre_usuario, id_venta):
     try:
-        Carrito.query.filter_by(id=id_venta).delete()  #Elimina un ítem del carrito por su ID.
-        db.session.commit()  #Guarda los cambios en la base de datos.
+        Carrito.query.filter_by(id=id_venta).delete()
+        db.session.commit()
         return jsonify({'message': 'Ítem eliminado del carrito'}), 200
     except Exception as e:
         return jsonify({'message': 'Error al eliminar el ítem', 'error': str(e)}), 500
+
 
 @app.route('/carrito/<nombre_usuario>')
 def carrito(nombre_usuario):
@@ -222,21 +250,21 @@ def carrito(nombre_usuario):
                 'cantidad': entrada.cantidad
             }
             entradas_data.append(entrada_data)
-        return jsonify(entradas_data)  #Retorna los detalles del carrito del usuario en formato JSON.
+        return jsonify(entradas_data)
     except:
-        return jsonify({"mensaje": "El carrito está vacío"})
+        return jsonify({"mensaje":"El carrito está vacío"})
 
 @app.route('/eventos/detalles/<id_evento>/<nombre_usuario>')
 def detalles(nombre_usuario, id_evento):
-    return render_template('detalles.html', nombre_usuario=nombre_usuario, id_evento=id_evento)  #Renderiza la página de detalles de un evento.
+    return render_template('detalles.html', nombre_usuario=nombre_usuario, id_evento=id_evento)
 
 @app.route('/seleccion/evento/<fecha_evento>/<nombre_usuario>')
 def seleccion_fecha(nombre_usuario):
-    return render_template('login.html', nombre_usuario=nombre_usuario)  #Renderiza la página de selección de fecha de evento.
+    return render_template('login.html', nombre_usuario=nombre_usuario)
 
 @app.route('/seleccion/evento/<asiento_evento>/<nombre_usuario>')
 def seleccion_asiento(nombre_usuario):
-    return render_template('login.html', nombre_usuario=nombre_usuario)  #Renderiza la página de selección de asiento de evento.
+    return render_template('login.html', nombre_usuario=nombre_usuario)
 
 @app.route('/entradas/<id_evento>')
 def entrada(id_evento):
@@ -252,12 +280,12 @@ def entrada(id_evento):
                 'cantidad_disponible': entrada.cantidad_disponible,
             }
             entradas_data.append(entrada_data)
-        return jsonify(entradas_data)  #Retorna las entradas disponibles para un evento en formato JSON.
+        return jsonify(entradas_data)
     except:
-        return jsonify({"mensaje": "El evento no tiene entradas"})
+        return jsonify({"mensaje":"El evento no tiene entradas"})
 
-if __name__ == '__main__':
+if __name__=='__main__':
     db.init_app(app)
     with app.app_context():
-        db.create_all()  #Crea todas las tablas en la base de datos si no existen.
-    app.run(host='0.0.0.0', debug=True, port=port)  # Ejecuta Flask en el puerto seleccionado.
+        db.create_all()
+    app.run(host='0.0.0.0', debug=True, port=port)
