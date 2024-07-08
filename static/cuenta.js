@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Simula la carga de datos del usuario desde la base de datos
     const userData = {
         nombre: "Juan",
         apellido: "Pérez",
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         telefono: "123456789"
     };
 
-    // Cargar datos del usuario en el formulario
     document.getElementById("nombre").value = userData.nombre;
     document.getElementById("apellido").value = userData.apellido;
     document.getElementById("mail").value = userData.mail;
@@ -26,7 +24,5 @@ function updateAccount() {
     const direccion = document.getElementById("direccion").value;
     const telefono = document.getElementById("telefono").value;
 
-    // Aquí se debería hacer una llamada a la API para actualizar los datos en la base de datos
-    // Simulación de actualización
     alert("Datos actualizados correctamente.");
 }

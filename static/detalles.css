@@ -11,8 +11,8 @@ body {
   padding: 0;
   overflow-x: hidden;
   background: url("fondo.jpg") no-repeat;
-  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura visible del viewport */
-  position: relative; /* Para posicionar correctamente el footer */
+  min-height: 100vh;
+  position: relative;
 }
 
 header {
@@ -103,7 +103,6 @@ nav ul li:hover {
   min-height: 500px;
 }
 
-
 .event-name {
   color: #fff;
   font-size: 60px;
@@ -122,6 +121,7 @@ nav ul li:hover {
   margin-top: 30px;
   margin-left: 20px;
 }
+
 .event-date{
   color: #fff;
   font-weight: bolder;
@@ -130,8 +130,8 @@ nav ul li:hover {
   
 }
 .event-ticket li {
-  margin-top: -200px; /* Ajusta según sea necesario */
-  margin-left: 695px; /* Ajusta según sea necesario */
+  margin-top: -200px;
+  margin-left: 695px;
   padding: 10px;
   position: relative;
   font-weight: bolder;
@@ -142,15 +142,14 @@ nav ul li:hover {
 
 
 .event-image {
-  width: 500px; /* Ancho fijo */
-  height: 500px; /* Altura fija */
-  object-fit: cover; /* Para mantener la proporción */
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-top: 95px;
   margin-left: 60px;
 }
-
 
 .add-to-cart-button {
   background: #fff;
@@ -164,7 +163,7 @@ nav ul li:hover {
   font-weight: 600;
   padding: 10px 20px;
   margin-top: 20px;
-  display: block; /* Para asegurarse de que el botón se muestre como un bloque dentro del <li> */
+  display: block;
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
