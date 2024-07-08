@@ -118,7 +118,7 @@ nav ul li:hover {
 .event-hour{
   color: #fff;
   font-weight: bolder;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 20px;
 }
 
@@ -126,8 +126,16 @@ nav ul li:hover {
   color: #fff;
   font-weight: bolder;
   margin-left: 18px;
-  margin-top: 30px;
+  margin-top: 10px;
   
+}
+
+#descripcion {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  margin-left: 500px;
 }
 
 .event-ticket li {
