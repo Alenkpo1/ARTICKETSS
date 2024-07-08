@@ -209,12 +209,13 @@ def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
     nombre=nombre_usuario
     precio=precio_entrada
     id_entrada=id_entrada
+    nombre_evento=Entradas.query.filter_by(id=id_entrada).first().nombre_evento
     tipo_entrada = Entradas.query.filter_by(id=id_entrada).first().tipo_entrada
     id_usuario = Usuarios.query.filter_by(nombre=nombre).first().id
     restante = Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible
     if restante>0:
         Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible - 1
-        carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  precio=precio, tipo_entrada=tipo_entrada)
+        carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  precio=precio, tipo_entrada=tipo_entrada, nombre_evento=nombre_evento)
         db.session.add(carrito)
         db.session.commit()
         return "subido al carrito"
@@ -249,7 +250,8 @@ def carrito(nombre_usuario):
                 'usuario_id': entrada.usuario_id,
                 'entrada_id': entrada.entrada_id,
                 'precio': entrada.precio,
-                'cantidad': entrada.cantidad
+                'cantidad': entrada.cantidad,
+                'nombre_evento': entrada.nombre_evento
             }
             entradas_data.append(entrada_data)
         return jsonify(entradas_data)

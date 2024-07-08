@@ -32,6 +32,7 @@ class Entradas(db.Model):
     tipo_entrada = db.Column(db.String(255), nullable=False)
     precio = db.Column(db.Integer, nullable=False)
     cantidad_disponible = db.Column(db.Integer, nullable=False)
+    nombre_evento = db.Column(db.String(255), nullable=False)
 
 class Carrito(db.Model):
     __tablename__ = 'carrito'   
@@ -42,6 +43,7 @@ class Carrito(db.Model):
     fecha_venta = db.Column(db.DateTime, default=datetime.datetime.now())
     precio = db.Column(db.Integer, nullable=False)
     tipo_entrada = db.Column(db.String(255), nullable=False)
+    nombre_evento = db.Column(db.String(255), nullable=False)
 
 class Contacto(db.Model):
     __tablename__ = 'contacto'
