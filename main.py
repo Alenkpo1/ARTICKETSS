@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify, flash, send_file
 from time import sleep
-from models import db, Usuarios, Eventos, Entradas, Ventas
+from models import db, Usuarios, Eventos, Entradas, Carrito, Contacto
 app= Flask(__name__)
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://articket:articket@localhost:5432/artickets'
@@ -19,6 +19,23 @@ def imagenes_eventos(image_id):
 def home(nombre_usuario):
     return render_template('home.html', nombre_usuario=nombre_usuario)
 
+@app.route('/contact/<nombre_usuario>', methods = ['POST', 'GET'])
+def contact(nombre_usuario):
+    if request.method == 'GET':
+        return render_template('contact.html', nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        nombre = request.form['name']
+        email = request.form['email']
+        mensaje = request.form['message']
+        nuevo_contacto = Contacto(
+            nombre=nombre,
+            email=email,
+            mensaje=mensaje
+        )
+        db.session.add(nuevo_contacto)
+        db.session.commit()
+        return "Contacto enviado"
+    
 @app.route('/login', methods= ['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -59,13 +76,46 @@ def register():
 def about(nombre_usuario):
     return render_template('about.html', nombre_usuario=nombre_usuario)
 
-@app.route('/cuenta/<nombre_usuario>')
-def cuenta(nombre_usuario):
-    return render_template('cuenta.html', nombre_usuario=nombre_usuario)
 
-@app.route('/contact/<nombre_usuario>')
-def contact(nombre_usuario):
-    return render_template('contact.html', nombre_usuario=nombre_usuario)
+@app.route('/cuenta/<nombre_usuario>', methods=['POST', 'GET'])
+def cuenta(nombre_usuario):
+    if request.method == 'GET':
+        return render_template('cuenta.html', nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        nombre= request.form['nombre']
+        apellido = request.form['apellido']
+        mail = request.form['mail']
+        contraseña = request.form['contraseña']
+        direccion = request.form['direccion']
+        telefono = request.form['telefono']
+
+        cuenta = Usuarios.query.filter_by(mail=mail).first()
+        cuenta.nombre = nombre
+        cuenta.apellido = apellido
+        cuenta.mail = mail
+        cuenta.contraseña = contraseña
+        cuenta.direccion = direccion
+        cuenta.telefono = telefono
+        db.session.commit()
+        return redirect(url_for('cuenta', nombre_usuario=nombre))
+
+@app.route('/cuenta/detalle/<nombre_usuario>')
+def cuenta_detalle(nombre_usuario):
+    try:
+        cuenta = Usuarios.query.filter_by(nombre=nombre_usuario).first()
+        cuenta_data = {
+            'nombre': cuenta.nombre,
+            'apellido': cuenta.apellido,
+            'mail': cuenta.mail,
+            'contraseña': cuenta.contraseña,
+            'direccion': cuenta.direccion,
+            'telefono': cuenta.telefono
+        }
+        return jsonify(cuenta_data)
+    except:
+        return jsonify({"mensaje":"La cuenta no existe"})
+    
+
 
 @app.route('/faq/<nombre_usuario>')
 def faq(nombre_usuario):
@@ -102,6 +152,7 @@ def evento_lugar(lugar):
             evento_data = {
                 'id': evento.id,
                 'nombre_evento': evento.nombre_evento,
+                'descripcion': evento.descripcion,
                 'fecha': evento.fecha,
                 'hora': evento.hora,
                 'lugar': evento.lugar
@@ -118,6 +169,7 @@ def detalles_evento(id_evento):
         evento_data = {
             'id': evento.id,
             'nombre_evento': evento.nombre_evento,
+            'descripcion': evento.descripcion,
             'fecha': evento.fecha,
             'hora': evento.hora,
             'lugar': evento.lugar
@@ -136,7 +188,7 @@ def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
     restante = Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible
     if restante>0:
         Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible - 1
-        carrito = Ventas(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  total_pago=precio)
+        carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  precio=precio)
         db.session.add(carrito)
         db.session.commit()
         return "subido al carrito"
@@ -151,7 +203,7 @@ def carrito_detalles(nombre_usuario):
 @app.route('/carrito/limpiar/<nombre_usuario>/<id_venta>', methods=['DELETE'])
 def carrito_limpiar(nombre_usuario, id_venta):
     try:
-        Ventas.query.filter_by(id=id_venta).delete()
+        Carrito.query.filter_by(id=id_venta).delete()
         db.session.commit()
         return jsonify({'message': 'Ítem eliminado del carrito'}), 200
     except Exception as e:
@@ -162,14 +214,14 @@ def carrito_limpiar(nombre_usuario, id_venta):
 def carrito(nombre_usuario):
     id_usuario = Usuarios.query.filter_by(nombre=nombre_usuario).first().id
     try:
-        entradas = Ventas.query.filter_by(usuario_id=id_usuario).all()
+        entradas = Carrito.query.filter_by(usuario_id=id_usuario).all()
         entradas_data = []
         for entrada in entradas:
             entrada_data = {
                 'id': entrada.id,
                 'usuario_id': entrada.usuario_id,
                 'entrada_id': entrada.entrada_id,
-                'precio': entrada.total_pago,
+                'precio': entrada.precio,
                 'cantidad': entrada.cantidad
             }
             entradas_data.append(entrada_data)
