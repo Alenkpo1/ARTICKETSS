@@ -107,6 +107,8 @@
                             const button = document.createElement("button")
                             element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ". Precio: $" + data[i].precio + ". Cantidad disponible: " + data[i].cantidad_disponible
                             button.innerText = "Añadir al carrito"
+                            button.setAttribute("onclick", 
+                            "href = '/carrito/agregar/{{nombre_usuario}}/" + data[i].precio + "/" + data[i].id + "'")
                             element.appendChild(button)
                             entradas.append(element)
                         }

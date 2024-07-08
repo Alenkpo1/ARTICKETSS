@@ -10,11 +10,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 def index():
     return render_template('index.html')
 
-@app.route('/prueba/detalles')
-def prueba():
-    return render_template('prueba.html')
-
-
 @app.route('/imagenes_eventos/<image_id>')
 def imagenes_eventos(image_id):
     img = Eventos.query.get(image_id)
@@ -131,6 +126,52 @@ def detalles_evento(id_evento):
     except:
         return jsonify({"mensaje":"El evento no existe"})
 
+
+@app.route('/carrito/agregar/<nombre_usuario>/<precio_entrada>/<id_entrada>')
+def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
+    nombre=nombre_usuario
+    precio=precio_entrada
+    id_entrada=id_entrada
+    id_usuario = Usuarios.query.filter_by(nombre=nombre).first().id
+    restante = Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible
+    if restante>0:
+        Entradas.query.filter_by(id=id_entrada).first().cantidad_disponible - 1
+        carrito = Ventas(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  total_pago=precio)
+        db.session.add(carrito)
+        db.session.commit()
+        return "subido al carrito"
+    else:
+        return "no hay mas entradas"
+    
+
+@app.route('/carrito/detalles/<nombre_usuario>')
+def carrito_detalles(nombre_usuario):
+    return render_template('carrito.html', nombre_usuario=nombre_usuario)
+
+@app.route('/carrito/limpiar/<nombre_usuario>/<id_venta>')
+def carrito_limpiar(nombre_usuario, id_venta):
+    Ventas.query.filter_by(id=id_venta).delete()
+    db.session.commit()
+    return "eliiminado del carrito"
+
+@app.route('/carrito/<nombre_usuario>')
+def carrito(nombre_usuario):
+    id_usuario = Usuarios.query.filter_by(nombre=nombre_usuario).first().id
+    try:
+        entradas = Ventas.query.filter_by(usuario_id=id_usuario).all()
+        entradas_data = []
+        for entrada in entradas:
+            entrada_data = {
+                'id': entrada.id,
+                'usuario_id': entrada.usuario_id,
+                'entrada_id': entrada.entrada_id,
+                'precio': entrada.total_pago,
+                'cantidad': entrada.cantidad
+            }
+            entradas_data.append(entrada_data)
+        return jsonify(entradas_data)
+    except:
+        return jsonify({"mensaje":"El carrito está vacío"})
 
 @app.route('/eventos/detalles/<id_evento>/<nombre_usuario>')
 def detalles(nombre_usuario, id_evento):
