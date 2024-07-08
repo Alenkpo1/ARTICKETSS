@@ -41,7 +41,9 @@
             </div>
         </div>
     </div>
-
+    <div class="pagar-container">
+        <button id="pagar-button" class="pagar-button">Ir a Pagar</button>
+    </div>
     <footer>
         <div class="footer-container">
             <div class="social-media">
@@ -97,7 +99,14 @@
                 }
             })
             .catch(error => console.error("Error fetching JSON data:", error));
+
+            document.getElementById("pagar-button").addEventListener("click", function() {
+                alert("Estás siendo dirigido al formulario de compra.");
+               
+            });
         });
     </script>
 </body>
 </html>
+
+        

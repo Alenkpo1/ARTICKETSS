@@ -21,7 +21,9 @@
                 <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
                 <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
                 <li class="carrito">
-                    <img src="{{ url_for('static', filename='carrito.png') }}" alt="Logo" class="logo-img">
+                    <a href="{{ url_for('carrito_detalles', nombre_usuario=nombre_usuario) }}">
+                        <img src="{{ url_for('static', filename='carrito.png') }}" alt="Carrito" class="logo-img">
+                    </a>
                 </li>
             </ul>
         </nav>

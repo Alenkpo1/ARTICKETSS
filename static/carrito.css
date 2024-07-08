@@ -108,7 +108,7 @@
     padding: 8px 16px;
     cursor: pointer;
     font-size: 14px;
-    margin-top: 10px;
+    
     margin-left: 13px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -117,6 +117,30 @@
     background-color: #ddd;
 }
 
+.pagar-container {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 20px; /* Espacio arriba del botón */
+}
+
+.pagar-button {
+    background: #1a025e; /* Color de fondo naranja */
+    border: none;
+    border-radius: 40px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 30px; /* Tamaño del botón */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+.pagar-button:hover {
+    background: #fffcf860; /* Color de fondo más oscuro */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
 
 
   footer {
