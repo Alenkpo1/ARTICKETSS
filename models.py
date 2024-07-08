@@ -41,6 +41,7 @@ class Carrito(db.Model):
     cantidad = db.Column(db.Integer, nullable=False)
     fecha_venta = db.Column(db.DateTime, default=datetime.datetime.now())
     precio = db.Column(db.Integer, nullable=False)
+    tipo_entrada = db.Column(db.String(255), nullable=False)
 
 class Contacto(db.Model):
     __tablename__ = 'contacto'
