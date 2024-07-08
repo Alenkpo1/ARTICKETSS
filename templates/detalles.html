@@ -42,6 +42,7 @@
                                     <div class="event-info-container">
                                         <h2 id="name" class="event-name"></h2>
                                         <h4 id="lugar" class="event-place"></h4>
+                                        <p id="descripcion" class="event-description"></p>
                                         <ul>
                                             <li id="hora" class="event-hour"></li>
                                             <li id="fecha" class="event-date"></li>
@@ -70,6 +71,9 @@
 
                     const lugar = document.getElementById("lugar");
                     lugar.innerText = data.lugar;
+
+                    const descripcion = document.getElementById("descripcion");
+                    descripcion.innerText = data.descripcion;
 
                     const fecha = document.getElementById("fecha");
                     fecha.innerText = data.fecha;
