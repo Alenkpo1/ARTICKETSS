@@ -8,21 +8,23 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo" class="logo-img">
-                </div>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Eventos</a></li>
-                    <li><a href="#">Mi Cuenta</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div class="carrito">
-                    <img src="carrito.png" alt="Carrito" class="carrito-img">
-                </div>
-            </div>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+                    <a href="/index">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="/login">Eventos</a></li>
+                <li><a href="/login">¿Quiénes somos?</a></li>
+                <li><a href="/login">Ayuda</a></li>
+                <li><a href="/login">Contacto</a></li>
+                <li><a href="/login">Iniciar sesión / Registrarse</a></li>
+                <li><a href="../templates/carrito.html">Carrito</a></li>
+                <li class="carrito">
+                    <img src="../static/carrito.png" alt="carrito" class="carrito-img">
+                </li>
+            </ul>
         </nav>
     </header>
 
@@ -62,16 +64,15 @@
     <footer>
         <div class="footer-container">
             <div class="social-media">
-                <img src="facebook.png" alt="Facebook">
-                <img src="twitter.png" alt="Twitter">
-                <img src="instagram.png" alt="Instagram">
+                <a href="#"><img src="../static/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
             </div>
             <div class="faq">
-                <a href="#">Preguntas Frecuentes</a>
-                <a href="#">Política de Privacidad</a>
+                <a href="/login">Preguntas Frecuentes</a>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+                <p>© 2024 ARTICKETS</p>
             </div>
         </div>
     </footer>
