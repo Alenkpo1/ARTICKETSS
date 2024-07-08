@@ -59,7 +59,7 @@ def contact(nombre_usuario):
         )
         db.session.add(nuevo_contacto)
         db.session.commit()
-        return "Contacto enviado"
+        return jsonify({'message': 'Contacto enviado'}), 204
     
 @app.route('/login', methods= ['POST', 'GET'])
 def login():
@@ -218,7 +218,7 @@ def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
         carrito = Carrito(usuario_id=id_usuario, entrada_id=id_entrada, cantidad=1,  precio=precio, tipo_entrada=tipo_entrada, nombre_evento=nombre_evento)
         db.session.add(carrito)
         db.session.commit()
-        return "subido al carrito"
+        return redirect(url_for('carrito_detalles', nombre_usuario=nombre_usuario))
     else:
         return "no hay mas entradas"
     
