@@ -15,12 +15,11 @@
                         <img src="../static/logo.png" alt="Logo" class="logo-img">
                     </a>
                 </li>
-                <li><a href="/login">Eventos</a></li>
-                <li><a href="/login">¿Quiénes somos?</a></li>
-                <li><a href="/login">Ayuda</a></li>
-                <li><a href="/login">Contacto</a></li>
-                <li><a href="/login">Iniciar sesión / Registrarse</a></li>
-                <li><a href="../templates/carrito.html">Carrito</a></li>
+                <li><a href="{{url_for('eventos', nombre_usuario=nombre_usuario)}}">Eventos</a></li>
+                <li><a href="{{url_for('about', nombre_usuario=nombre_usuario)}}">¿Quiénes somos?</a></li>
+                <li><a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Ayuda</a></li>
+                <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
+                <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
                 <li class="carrito">
                     <img src="../static/carrito.png" alt="carrito" class="carrito-img">
                 </li>
@@ -69,7 +68,7 @@
                 <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
             </div>
             <div class="faq">
-                <a href="/login">Preguntas Frecuentes</a>
+                <a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Preguntas Frecuentes</a>
             </div>
             <div class="copyright">
                 <p>© 2024 ARTICKETS</p>

@@ -1,48 +1,215 @@
-/* || general styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-html {
-    font-family: 'helvetica neue', helvetica, arial, sans-serif;
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: url("fondo.jpg") no-repeat;
+  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura visible del viewport */
+  position: relative; /* Para posicionar correctamente el footer */
+}
+
+header {
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0 12px;
+}
+
+nav ul li a {
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav ul li:hover {
+  background: rgba(1, 7, 36, 0.8); 
+  border-radius: 50px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center; 
+}
+
+.logo {
+  margin-right: auto; 
+}
+
+.logo-img {
+  height: 18px; 
+  width: auto;
+}
+
+.carrito {
+  margin-right: auto; 
+}
+
+.carrito-img {
+  height: 18px; 
+  width: auto;
+}
+
+.event-details-wrapper {
+  width: 90%;
+  max-width: 840px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: rgba(4, 11, 12, 0.74);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.event-info-container {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 50px;
+  background-color: rgba(4, 11, 12, 0.7);
+  margin-left: 650px;
+  margin-right: 250px;
+  margin-top: -500px;
+  min-height: 500px;
+}
+
+
+.event-name {
+  color: #fff;
+  font-size: 60px;
+  text-transform: uppercase;
+}
+
+.event-place {
+  color: #fff;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.event-hour{
+  color: #fff;
+  font-weight: bolder;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+.event-date{
+  color: #fff;
+  font-weight: bolder;
+  margin-left: 18px;
+  margin-top: 30px;
   
-  body {
-    width: 800px;
-    margin: 0 auto;
-  }
-  
-  h1, h2 {
-    font-family: 'Faster One', cursive;
-  }
-  
-  /* header styles */
-  
-  h1 {
-    font-size: 4rem;
-    text-align: center;
-  }
-  
-  header p {
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* section styles */
-  
-  section article {
-    width: 33%;
-    float: left;
-  }
-  
-  section p {
-    margin: 5px 0;
-  }
-  
-  section ul {
-    margin-top: 0;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-    letter-spacing: -5px;
-    margin-bottom: 10px;
-  }
+}
+.event-ticket li {
+  margin-top: -200px; /* Ajusta según sea necesario */
+  margin-left: 695px; /* Ajusta según sea necesario */
+  padding: 10px;
+  position: relative;
+  font-weight: bolder;
+  list-style: none;
+  color: #fff;
+}
+
+
+
+.event-image {
+  width: 500px; /* Ancho fijo */
+  height: 500px; /* Altura fija */
+  object-fit: cover; /* Para mantener la proporción */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 95px;
+  margin-left: 60px;
+}
+
+
+.add-to-cart-button {
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #f0e9e9ea;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-top: 20px;
+  display: block; /* Para asegurarse de que el botón se muestre como un bloque dentro del <li> */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: rgba(4, 11, 12, 0.7);
+}
+
+.add-to-cart-button:hover {
+  background: #ffffff62;
+}
+
+footer {
+  background-color: #07032e;
+  color: white;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.social-media img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.faq a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.faq a:hover {
+  text-decoration: underline;
+  color: rgba(1, 7, 36, 0.8); 
+}
+
+.copyright p {
+  margin: 0;
+}

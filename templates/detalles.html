@@ -4,25 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artickets</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        img {
-            background-color: dimgray;
-            aspect-ratio: 3/4;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/faq.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='detalles.css') }}">
 </head>
 <body>
     <header>
         <nav class="nav-container">
             <ul>
                 <li class="logo">
-
                     <a href="{{url_for('home', nombre_usuario=nombre_usuario)}}">
-                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo-img">
                     </a>
                 </li>
                 <li><a href="{{url_for('eventos', nombre_usuario=nombre_usuario)}}">Eventos</a></li>
@@ -31,7 +21,7 @@
                 <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
                 <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
                 <li class="carrito">
-                    <img src="../static/carrito.png" alt="carrito" class="carrito-img">
+                    <img src="{{ url_for('static', filename='carrito.png') }}" alt="Logo" class="logo-img">
                 </li>
             </ul>
         </nav>
@@ -44,80 +34,87 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <img src="/imagenes_eventos/{{id_evento}}" alt="" id="image" class="w-100">
+                                    <img src="/imagenes_eventos/{{id_evento}}" alt="" id="image" class="event-image">
                                 </div>
                                 <div class="col-6">
-                                    <h2 id="name"></h2>
-                                    <h4 id="lugar" class="text-decoration-underline"></h4>
-                                    <h5></h5>
-                                    <ul>
-                                        <li id="hora"></li>
-                                        <li id="fecha"></li>
-                                    </ul>
+                                    <div class="event-info-container">
+                                        <h2 id="name" class="event-name"></h2>
+                                        <h4 id="lugar" class="event-place"></h4>
+                                        <ul>
+                                            <li id="hora" class="event-hour"></li>
+                                            <li id="fecha" class="event-date"></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <ul id="entradas">
-                               
+                            <ul id="entradas" class="event-ticket">
+                                <!-- Entradas se llenarán aquí -->
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/evento/{{id_evento}}')
+                .then(response => response.json())
+                .then(data => {
+                    const name = document.getElementById("name");
+                    name.innerText = data.nombre_evento;
 
-            <script >
-                document.addEventListener("DOMContentLoaded", function () {
-                    fetch('/evento/{{id_evento}}')
-                    .then(response => response.json())
-                    .then(data => {
-                        const dataDisplay = document.getElementById("dataDisplay");
-        
-                        // Create HTML elements to display the JSON data
-                        const name = document.getElementById("name");
-                        name.innerText = data.nombre_evento;
-        
-                        const lugar = document.getElementById("lugar");
-                        lugar.innerText = data.lugar;
-        
-                        const fecha = document.getElementById("fecha");
-                        fecha.innerText = data.fecha;
-        
-                        const hora = document.getElementById("hora");
-                        hora.innerText = data.hora;
-                    })
-                    .catch(error => console.error("Error fetching JSON data:", error));
-                });
-            </script>
-            <script >
-                document.addEventListener("DOMContentLoaded", function () {
-                    fetch('/entradas/{{id_evento}}')
-                    .then(response => response.json())
-                    .then(data => {
-                        const entradas = document.getElementById("entradas");
+                    const lugar = document.getElementById("lugar");
+                    lugar.innerText = data.lugar;
 
-                        for (let i = 0; i < data.length; i++) {
-                            const element = document.createElement("li")
-                            const button = document.createElement("button")
-                            element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ". Precio: $" + data[i].precio + ". Cantidad disponible: " + data[i].cantidad_disponible
-                            button.innerText = "Añadir al carrito"
-                            button.setAttribute("onclick", 
-                            "href = '/carrito/agregar/{{nombre_usuario}}/" + data[i].precio + "/" + data[i].id + "'")
-                            element.appendChild(button)
-                            entradas.append(element)
-                        }
-                        
-                        
-                    })
-                    .catch(error => console.error("Error fetching JSON data:", error));
-                });
-            </script>
+                    const fecha = document.getElementById("fecha");
+                    fecha.innerText = data.fecha;
 
-</body>
+                    const hora = document.getElementById("hora");
+                    hora.innerText = data.hora;
+                })
+                .catch(error => console.error("Error fetching JSON data:", error));
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/entradas/{{id_evento}}')
+                .then(response => response.json())
+                .then(data => {
+                    const entradas = document.getElementById("entradas");
+
+                    for (let i = 0; i < data.length; i++) {
+                        const element = document.createElement("li");
+                        const button = document.createElement("button");
+                        button.className = "add-to-cart-button";
+                        button.innerText = "Añadir al carrito";
+                        button.setAttribute("onclick", "location.href='/carrito/agregar/{{nombre_usuario}}/" + data[i].precio + "/" + data[i].id + "'");
+
+                        element.innerText = "Tipo de entrada: " + data[i].tipo_entrada + ".\n\nPrecio: $" + data[i].precio + ".\n\nCantidad disponible: " + data[i].cantidad_disponible;
+                        element.appendChild(button);
+                        entradas.appendChild(element);
+                    }
+                })
+                .catch(error => console.error("Error fetching JSON data:", error));
+            });
+
+        </script>
+
+        <footer>
+            <div class="footer-container">
+                <div class="social-media">
+                    <a href="#"><img src="{{ url_for('static', filename='facebook.png') }}" alt="Logo" class="logo-img"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='twitter.png') }}" alt="Logo" class="logo-img"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='instagram.png') }}" alt="Logo" class="logo-img"></a>
+                </div>
+                <div class="faq">
+                    <a href="/login">Preguntas Frecuentes</a>
+                </div>
+                <div class="copyright">
+                    <p>© 2024 ARTICKETS</p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
