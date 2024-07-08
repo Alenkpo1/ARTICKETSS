@@ -18,6 +18,7 @@ class Eventos(db.Model):
     __tablename__ = 'eventos'
     id = db.Column(db.Integer, primary_key=True)
     nombre_evento = db.Column(db.String(255), nullable=False)
+    descripcion = db.Column(db.String(255), nullable=False)
     fecha = db.Column(db.String(255), nullable=False)
     hora = db.Column(db.String(255), nullable=False)
     lugar = db.Column(db.String(255), nullable=False)
@@ -32,11 +33,18 @@ class Entradas(db.Model):
     precio = db.Column(db.Integer, nullable=False)
     cantidad_disponible = db.Column(db.Integer, nullable=False)
 
-class Ventas(db.Model):
-    __tablename__ = 'ventas'   
+class Carrito(db.Model):
+    __tablename__ = 'carrito'   
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
     entrada_id = db.Column(db.Integer, db.ForeignKey('entradas.id'))
     cantidad = db.Column(db.Integer, nullable=False)
     fecha_venta = db.Column(db.DateTime, default=datetime.datetime.now())
-    total_pago = db.Column(db.Integer, nullable=False)
+    precio = db.Column(db.Integer, nullable=False)
+
+class Contacto(db.Model):
+    __tablename__ = 'contacto'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    mensaje = db.Column(db.String(255), nullable=False)
