@@ -1,3 +1,4 @@
+//Maneja la interactividad del formulario de inicio de sesión y recuperación de contraseña.
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
     const forgotPasswordForm = document.getElementById("forgotPasswordForm");

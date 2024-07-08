@@ -1,3 +1,4 @@
+//Cargar información del evento al cargar la página.
 document.addEventListener("DOMContentLoaded", function () {
     fetch('/evento/{{id_evento}}')
         .then(response => response.json())

@@ -1,3 +1,4 @@
+//Configura el manejo de clics para mostrar u ocultar respuestas de preguntas frecuentes al cargar el DOM.
 document.addEventListener("DOMContentLoaded", () => {
     const faqItems = document.querySelectorAll(".faq-item");
 

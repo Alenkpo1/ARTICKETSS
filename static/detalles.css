@@ -129,6 +129,7 @@ nav ul li:hover {
   margin-top: 30px;
   
 }
+
 .event-ticket li {
   margin-top: -200px;
   margin-left: 695px;
@@ -138,8 +139,6 @@ nav ul li:hover {
   list-style: none;
   color: #fff;
 }
-
-
 
 .event-image {
   width: 500px;
