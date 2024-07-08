@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <title>ARtickets</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <ul>
+                <li class="logo">
+
+                    <a href="{{url_for('home', nombre_usuario=nombre_usuario)}}">
+                        <img src="../static/logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+                <li><a href="{{url_for('eventos', nombre_usuario=nombre_usuario)}}">Eventos</a></li>
+                <li><a href="{{url_for('about', nombre_usuario=nombre_usuario)}}">¿Quiénes somos?</a></li>
+                <li><a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Ayuda</a></li>
+                <li><a href="{{url_for('contact', nombre_usuario=nombre_usuario)}}">Contacto</a></li>
+                <li><a href="{{url_for('cuenta', nombre_usuario=nombre_usuario)}}">Mi cuenta</a></li>
+                <a href="{{ url_for('carrito_detalles', nombre_usuario=nombre_usuario) }}">
+                    <img src="{{ url_for('static', filename='carrito.png') }}" alt="Carrito" class="logo-img">
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="concerts" class="concerts">
+            <div id="concert" class="concert">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="social-media">
+                <a href="#"><img src="../static/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/instagram.png" alt="Instagram"></a>
+            </div>
+            <div class="faq">
+                <a href="{{url_for('faq', nombre_usuario=nombre_usuario)}}">Preguntas Frecuentes</a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 ARTICKETS</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                fetch('/eventos_filtrados/{{search}}')
+                .then(response => response.json())
+                .then(data => {
+                    const concerts = document.getElementById("concert");
+                    const imagen = document.createElement("img");
+                    const button = document.createElement("button");
+                    button.innerText = "Comprar tickets";
+                    button.setAttribute("onclick", "location.href='/eventos/detalles/" + data.id + "/" + "{{nombre_usuario}}" + "';");
+                    imagen.setAttribute("src", "/imagenes_eventos/" + data.id);
+                        
+                    concerts.appendChild(imagen);
+                    concerts.appendChild(button);
+                    }
+                )
+                .catch(error => console.error("Error fetching JSON data:", error));
+            });
+
+    </script>
+</body>
+</html>
