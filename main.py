@@ -148,11 +148,15 @@ def carrito_agregar(nombre_usuario, precio_entrada, id_entrada):
 def carrito_detalles(nombre_usuario):
     return render_template('carrito.html', nombre_usuario=nombre_usuario)
 
-@app.route('/carrito/limpiar/<nombre_usuario>/<id_venta>')
+@app.route('/carrito/limpiar/<nombre_usuario>/<id_venta>', methods=['DELETE'])
 def carrito_limpiar(nombre_usuario, id_venta):
-    Ventas.query.filter_by(id=id_venta).delete()
-    db.session.commit()
-    return "eliiminado del carrito"
+    try:
+        Ventas.query.filter_by(id=id_venta).delete()
+        db.session.commit()
+        return jsonify({'message': 'Ítem eliminado del carrito'}), 200
+    except Exception as e:
+        return jsonify({'message': 'Error al eliminar el ítem', 'error': str(e)}), 500
+
 
 @app.route('/carrito/<nombre_usuario>')
 def carrito(nombre_usuario):
