@@ -15,9 +15,34 @@ def imagenes_eventos(image_id):
     img = Eventos.query.get(image_id)
     return send_file(img.imagen, mimetype='image/png')
 
-@app.route('/home/<nombre_usuario>')
+@app.route('/home/<nombre_usuario>', methods = ['POST', 'GET'])
 def home(nombre_usuario):
-    return render_template('home.html', nombre_usuario=nombre_usuario)
+    if request.method == 'GET':
+        return render_template('home.html', nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        search = request.form['search']
+        return redirect(url_for('eventos_search', search=search, nombre_usuario=nombre_usuario))
+
+@app.route('/eventos_filtrados/<search>')
+def eventos_filtrados(search):
+    try:
+        evento= Eventos.query.filter_by(nombre_evento=search).first()
+        evento_data = {
+            'id':evento.id,
+            'nombre_evento': evento.nombre_evento
+
+        }
+        return jsonify(evento_data)
+    except:
+        return jsonify({"mensaje":"El evento no existe"})
+    
+@app.route('/eventos/<search>/<nombre_usuario>', methods = ['POST', 'GET'])
+def eventos_search(search, nombre_usuario):
+    if request.method == 'GET':
+        return render_template('eventos_search.html', search=search, nombre_usuario=nombre_usuario)
+    if request.method == 'POST':
+        return redirect(url_for('eventos', search=search, nombre_usuario=nombre_usuario))
+    
 
 @app.route('/contact/<nombre_usuario>', methods = ['POST', 'GET'])
 def contact(nombre_usuario):
@@ -143,7 +168,7 @@ def evento():
     except:
         return jsonify({"mensaje":"No existen eventos"})
     
-@app.route('/evento_lugar/<lugar>')
+@app.route('/evento_search/<search>')
 def evento_lugar(lugar):
     try:
         evento = Eventos.query.filter_by(lugar=lugar)
