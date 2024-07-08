@@ -10,6 +10,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 def index():
     return render_template('index.html')
 
+@app.route('/prueba/detalles')
+def prueba():
+    return render_template('prueba.html')
+
+
 @app.route('/imagenes_eventos/<image_id>')
 def imagenes_eventos(image_id):
     img = Eventos.query.get(image_id)
@@ -138,7 +143,23 @@ def seleccion_fecha(nombre_usuario):
 def seleccion_asiento(nombre_usuario):
     return render_template('login.html', nombre_usuario=nombre_usuario)
 
-
+@app.route('/entradas/<id_evento>')
+def entrada(id_evento):
+    try:
+        entradas = Entradas.query.filter_by(evento_id=id_evento)
+        entradas_data = []
+        for entrada in entradas:
+            entrada_data = {
+                'id': entrada.id,
+                'evento_id': entrada.evento_id,
+                'tipo_entrada': entrada.tipo_entrada,
+                'precio': entrada.precio,
+                'cantidad_disponible': entrada.cantidad_disponible,
+            }
+            entradas_data.append(entrada_data)
+        return jsonify(entradas_data)
+    except:
+        return jsonify({"mensaje":"El evento no tiene entradas"})
 
 if __name__=='__main__':
     db.init_app(app)
